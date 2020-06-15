@@ -31,6 +31,7 @@
     "battery-level": "^3.0.0",
     "debug": "^4.1.1",
     "install": "^0.13.0",
+    "is-charging": "^2.0.0",
     "npm": "^6.14.5",
     "request": "^2.88.0"
   },

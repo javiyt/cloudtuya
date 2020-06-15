@@ -8,6 +8,7 @@ const CloudTuya = require('./cloudtuya');
 const BaseDevice = require('./devices/baseDevice');
 const name = 'cloudtuya';
 const batteryLevel = require('battery-level');
+const batteryCharging = require('is-charging');
 
 async function changeStatus(status) {
     // Load local files
@@ -44,10 +45,11 @@ async function changeStatus(status) {
 
 async function main() {
     const currentLevel = await batteryLevel()
+    const isCharging = await batteryCharging()
 
-    if (currentLevel <= 0.2) {
+    if (currentLevel <= 0.2 && !isCharging) {
         changeStatus(true)
-    } else if (currentLevel >= 0.8) {
+    } else if (currentLevel >= 0.8 && isCharging) {
         changeStatus(false)
     }
 }
