@@ -30,8 +30,9 @@ class BaseDevice {
 
   async getSkills() {
     var state = await this._api.find({
-      devId: this._deviceId
+      id: this._deviceId
     });
+
     return state && state[0] && state[0].data;
   }
 

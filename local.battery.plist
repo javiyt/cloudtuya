@@ -10,7 +10,8 @@
         <array>
                 <string>/usr/local/bin/node</string>
                 <string>/Users/Me/Scripts/laptop.js</string>
-                <string>DEVICE_ID</string>
+                <string>LAPTOP_DEVICE_ID</string>
+                <!-- <string>MONITOR_DEVICE_ID</string> -->
         </array>
         <key>RunAtLoad</key>
         <true/>
@@ -19,6 +20,6 @@
         <key>StandardErrorPath</key>
         <string>/tmp/battery.err</string>
         <key>StandardOutPath</key>
-        <string>/tmp/battery.out</string>        
+        <string>/tmp/battery.out</string>
 </dict>
 </plist>
