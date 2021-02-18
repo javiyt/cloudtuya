@@ -51,7 +51,7 @@ class CloudTuya {
     config.region = (config.region && knownRegions.indexOf(config.region.toLowerCase()) !== -1)
       ? config.region.toLowerCase()
       : 'eu';
-    this.uri = 'https://px1.tuya' + config.region + '.com/homeassistant';
+    this.uri = `https://px1.tuya${config.region}.com/homeassistant`;
   }
 
   /**
@@ -114,7 +114,11 @@ class CloudTuya {
 
   // Converts true/false to ON/OFF
   static smap(itemState) {
-    return(itemState && 'ON') || 'OFF';
+    let logicalState = itemState;
+    if(typeof itemState === typeof 'string') {
+      logicalState = itemState === 'true';
+    }
+    return(logicalState ? 'ON' : 'OFF');
   }
 
   // Convert text on/off, logic and numbers into 1/0 values
@@ -165,7 +169,8 @@ class CloudTuya {
     payload.accessToken = this.accessToken;
     payload.devId = config.devId;
     // dsp 1 default
-    payload.value = CloudTuya.lmap(config.setState);
+    // For legacy support
+    if(Object.keys(config).includes('setState')) payload.value = CloudTuya.lmap(config.setState);
     const command = config.command || 'turnOnOff';
     debug(payload);
     const data = {
@@ -212,7 +217,7 @@ class CloudTuya {
     this.accessToken = tokens.access_token;
     debug(tokens);
 
-    if(tokens && tokens.responseStatus && tokens.responseStatus === 'error'){
+    if(tokens && tokens.responseStatus && tokens.responseStatus === 'error') {
       console.error(tokens.errorMsg);
       return null;
     }
@@ -222,6 +227,11 @@ class CloudTuya {
 
   async getToken(options) {
     return this.login(options);
+  }
+
+  async setToken(tokens) {
+    this.tokens = tokens;
+    this.accessToken = tokens.access_token;
   }
 }
 
