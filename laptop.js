@@ -50,14 +50,14 @@ async function main() {
         changeStatus(false, process.argv[2])
     }
 
-    si.graphics().then(data => {
-        let d = data.displays.filter(display => display.pixeldepth > 0).length
-        if (d > 1 && process.argv[3]) {
-            changeStatus(true, process.argv[3])
-        } else if (d == 1 && process.argv[3]) {
-            changeStatus(false, process.argv[3])
-        }
-    });
+   // si.graphics().then(data => {
+   //     let d = data.displays.filter(display => display.pixeldepth > 0).length
+   //     if (d > 1 && process.argv[3]) {
+   //         changeStatus(true, process.argv[3])
+   //     } else if (d == 1 && process.argv[3]) {
+   //         changeStatus(false, process.argv[3])
+   //     }
+   // });
 }
 
 main();
