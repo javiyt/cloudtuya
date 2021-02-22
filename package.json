@@ -28,8 +28,11 @@
   },
   "homepage": "https://github.com/unparagoned/cloudtuya#readme",
   "dependencies": {
+    "battery-level": "^3.0.0",
     "debug": "^4.1.1",
-    "request": "^2.88.0"
+    "is-charging": "^2.0.0",
+    "request": "^2.88.0",
+    "systeminformation": "^5.3.4"
   },
   "devDependencies": {
     "eslint": "^5.14.0",
